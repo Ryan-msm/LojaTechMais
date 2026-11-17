@@ -25,7 +25,6 @@
     </div>
   </header>
 
-  <!-- Barra de Legendas e Acessibilidade em Tempo Real -->
   <section class="legendas" id="legendas" aria-labelledby="leg-tit">
     <div class="cab">
       <h2 id="leg-tit">Legendas ao vivo</h2>
@@ -33,11 +32,10 @@
       <button id="btn-audio" class="btn" aria-pressed="true">Áudio ligado</button>
     </div>
     <ol id="log" role="log" aria-live="polite" aria-relevant="additions" aria-label="Histórico de legendas">
-      <li><span class="hora">00:00</span><b>Site:</b> catálogo atualizado com mais de 20 opções de hardware.</li>
+      <li><span class="hora">00:00</span><b>Site:</b> catálogo atualizado com 20 opções de hardware sem bloqueios de imagem.</li>
     </ol>
   </section>
 
-  <!-- Painéis Ocultos de Assistente e Preferências -->
   <section class="painel" id="assistente" hidden aria-labelledby="assist-tit">
     <p class="passo" id="passo-num"></p>
     <h2 id="assist-tit">Assistente de navegação</h2>
@@ -67,10 +65,9 @@
   </section>
 
   <main id="catalogo">
-    <!-- Seção de Busca Estilo Mercado Livre -->
     <section class="hero" aria-labelledby="busca-tit">
       <h1 id="busca-tit">Busque sua peça, placa ou processador</h1>
-      <p>Encontre componentes com imagens reais, especificações detalhadas e estoque dinâmico.</p>
+      <p>Encontre componentes com imagens diretas, especificações detalhadas e estoque dinâmico.</p>
       <div class="busca" role="search">
         <label for="busca" class="sr">Nome da peça</label>
         <input id="busca" type="search" placeholder="Ex.: RTX 4060, Ryzen 7, SSD M.2, Placa-mãe..." autocomplete="off" aria-describedby="busca-dica">
@@ -80,7 +77,6 @@
       <p id="anuncios" class="sr" aria-live="polite" aria-atomic="true"></p>
     </section>
 
-    <!-- Filtros por Categoria -->
     <fieldset class="cats" id="cats">
       <legend>Filtrar por categoria</legend>
       <button class="btn" data-cat="todos" aria-pressed="true">Todas</button>
@@ -107,11 +103,9 @@
       </p>
     </div>
 
-    <!-- Grade Dinâmica de Produtos -->
     <ul class="grade" id="grade" aria-labelledby="prod-tit"></ul>
     <p class="vazio" id="sem-res" hidden>Nenhuma peça encontrada com esses critérios.</p>
 
-    <!-- Carrinho e Comparativo -->
     <div class="painel-grid">
       <section class="painel" id="carrinho" aria-labelledby="carr-tit">
         <h2 id="carr-tit">🛒 Carrinho de Compras</h2>
@@ -128,7 +122,6 @@
       </section>
     </div>
 
-    <!-- Checkout Seguro -->
     <section class="painel" id="checkout" aria-labelledby="check-tit">
       <h2 id="check-tit">Finalizar Pedido</h2>
       <p class="dica" style="margin-bottom:12px">Preencha seus dados para entrega expressa.</p>
@@ -163,7 +156,6 @@
       </div>
     </section>
 
-    <!-- Declaração WCAG -->
     <section class="painel" id="declaracao" aria-labelledby="decl-tit">
       <h2 id="decl-tit">Compromisso com Acessibilidade</h2>
       <p class="dica" style="margin-bottom:10px">Desenvolvido em conformidade com as diretrizes WCAG 2.1 nível AA. <span class="selo">Certificado AA</span></p>
