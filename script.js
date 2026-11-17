@@ -56,188 +56,28 @@ function anunciar(t) { anu.textContent = ''; setTimeout(function(){ anu.textCont
 function piscar(el) { if(!el || prefs.mov) return; el.classList.add('pisca'); setTimeout(function(){ el.classList.remove('pisca'); }, 1200); }
 function brl(v) { return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL'}); }
 
-/* Catálogo com 20 Produtos e Fotografias Reais de Hardware (Wikimedia Commons) */
+/* Catálogo Completo com 20 Produtos e URLs Diretas sem Bloqueio CORB/CORS */
 var P = [
-  {
-    id:'p1',
-    n:'Placa de Vídeo NVIDIA GeForce RTX 4060 8GB GDDR6',
-    p:1899.00, pAnt:2299.00, c:'gpu', loja:'Kabum',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Nvidia_GeForce_RTX_4060_Ti_Founders_Edition.jpg/640px-Nvidia_GeForce_RTX_4060_Ti_Founders_Edition.jpg',
-    a:'Fotografia real da placa de vídeo NVIDIA GeForce RTX série 40',
-    d:'Arquitetura Ada Lovelace, DLSS 3, Ray Tracing e 8GB GDDR6 para jogos em Full HD.',
-    e:12
-  },
-  {
-    id:'p2',
-    n:'Processador AMD Ryzen 7 5700X, 8-Core, 16-Threads AM4',
-    p:1249.90, pAnt:1599.00, c:'cpu', loja:'Pichau',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/AMD_Ryzen_7_1700X_CPU.jpg/640px-AMD_Ryzen_7_1700X_CPU.jpg',
-    a:'Fotografia real do chip processador AMD Ryzen com pinos dourados',
-    d:'Clock boost até 4.6GHz, 36MB de cache, ideal para jogos e edição pesada.',
-    e:18
-  },
-  {
-    id:'p3',
-    n:'Memória RAM Kingston HyperX Fury 16GB (2x8) DDR4 3200MHz',
-    p:299.90, pAnt:399.00, c:'memorias', loja:'Kabum',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/HyperX_Fury_DDR4_RAM.jpg/640px-HyperX_Fury_DDR4_RAM.jpg',
-    a:'Fotografia real do pente de memória RAM DDR4 preto com dissipador',
-    d:'Dissipador de calor assimétrico de perfil baixo e suporte Intel XMP.',
-    e:25
-  },
-  {
-    id:'p4',
-    n:'SSD Kingston NVMe M.2 2280 1TB PCIe Gen 4.0',
-    p:429.90, pAnt:549.00, c:'ssd', loja:'Pichau',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/M.2_2280_SSD.jpg/640px-M.2_2280_SSD.jpg',
-    a:'Fotografia real de um módulo SSD M.2 2280 NVMe',
-    d:'Leitura de até 3500 MB/s, formato compacto sem cabos para placas-mãe modernas.',
-    e:30
-  },
-  {
-    id:'p5',
-    n:'Placa-Mãe ASUS TUF Gaming B550M-PLUS Micro-ATX AM4',
-    p:699.90, pAnt:899.00, c:'placa-mae', loja:'Kabum',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Computer_motherboard.jpg/640px-Computer_motherboard.jpg',
-    a:'Fotografia real de uma placa-mãe ATX com slots PCIe e memórias',
-    d:'VRM robusto de 8+2 fases, dois slots M.2, rede 2.5Gb e áudio gaming.',
-    e:8
-  },
-  {
-    id:'p6',
-    n:'Monitor Gamer Curvo 27 pol. QHD 165Hz 1ms FreeSync',
-    p:1399.00, pAnt:1799.00, c:'monitor', loja:'Pichau',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/LG_UltraGear_gaming_monitor.jpg/640px-LG_UltraGear_gaming_monitor.jpg',
-    a:'Fotografia real de um monitor gamer widescreen sobre mesa',
-    d:'Resolução 2560x1440, bordas ultrafinas e ajuste de inclinação.',
-    e:7
-  },
-  {
-    id:'p7',
-    n:'Fonte ATX 650W 80 Plus Bronze PFC Ativo',
-    p:349.90, pAnt:449.00, c:'fonte', loja:'Kabum',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/ATX_power_supply.jpg/640px-ATX_power_supply.jpg',
-    a:'Fotografia real de uma fonte de alimentação ATX preta com ventoinha',
-    d:'Ventoinha silenciosa de 120mm e proteções contra sobretensão e curto-circuito.',
-    e:15
-  },
-  {
-    id:'p8',
-    n:'Gabinete Gamer Mid Tower Lateral Vidro Temperado',
-    p:229.90, pAnt:299.00, c:'perifericos', loja:'Pichau',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Gaming_PC_case.jpg/640px-Gaming_PC_case.jpg',
-    a:'Fotografia real de um gabinete gamer torre média iluminado',
-    d:'Suporte para placas-mãe ATX/mATX e espaço para water cooler de 240mm.',
-    e:14
-  },
-  {
-    id:'p9',
-    n:'Processador Intel Core i5-12400F LGA 1700 6-Core',
-    p:799.00, pAnt:999.00, c:'cpu', loja:'Kabum',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Intel_Core_i5_12400F.jpg/640px-Intel_Core_i5_12400F.jpg',
-    a:'Fotografia real do processador Intel Core i5 de 12ª geração',
-    d:'6 núcleos de performance, 12 threads e 18MB de Intel Smart Cache.',
-    e:20
-  },
-  {
-    id:'p10',
-    n:'Placa de Vídeo AMD Radeon RX 6700 XT 12GB GDDR6',
-    p:2399.00, pAnt:2899.00, c:'gpu', loja:'Pichau',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/AMD_Radeon_RX_6700_XT.jpg/640px-AMD_Radeon_RX_6700_XT.jpg',
-    a:'Fotografia real da placa de vídeo AMD Radeon RX 6700 XT',
-    d:'12GB de VRAM GDDR6, ideal para jogos em Quad HD com texturas no máximo.',
-    e:5
-  },
-  {
-    id:'p11',
-    n:'Memória RAM Corsair Vengeance RGB Pro 32GB (2x16) DDR4',
-    p:679.90, pAnt:849.00, c:'memorias', loja:'Kabum',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Corsair_Vengeance_RAM.jpg/640px-Corsair_Vengeance_RAM.jpg',
-    a:'Fotografia real de módulos de memória Corsair Vengeance',
-    d:'Iluminação LED RGB multizona dinâmica e chips selecionados para overclock.',
-    e:10
-  },
-  {
-    id:'p12',
-    n:'SSD SATA III 2.5" 960GB Kingston A400',
-    p:359.00, pAnt:449.00, c:'ssd', loja:'Pichau',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Kingston_A400_SSD.jpg/640px-Kingston_A400_SSD.jpg',
-    a:'Fotografia real de um SSD SATA 2.5 polegadas Kingston',
-    d:'10x mais rápido que um HD tradicional, ideal para upgrades de PC e notebooks.',
-    e:24
-  },
-  {
-    id:'p13',
-    n:'Placa-Mãe MSI MAG Z690 Tomahawk WiFi DDR4 LGA 1700',
-    p:1299.00, pAnt:1599.00, c:'placa-mae', loja:'Kabum',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Micro-Star_International_motherboard.jpg/640px-Micro-Star_International_motherboard.jpg',
-    a:'Fotografia real de placa-mãe MSI ATX com dissipadores',
-    d:'Wi-Fi 6E integrado, 4 slots M.2 Shield Frozr e USB 3.2 Gen 2x2.',
-    e:6
-  },
-  {
-    id:'p14',
-    n:'Monitor Ultrawide 29 pol. IPS Full HD 75Hz HDR10',
-    p:1099.00, pAnt:1399.00, c:'monitor', loja:'Pichau',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Ultrawide_monitor.jpg/640px-Ultrawide_monitor.jpg',
-    a:'Fotografia real de monitor ultrawide 21:9 sobre secretária',
-    d:'Proporção 21:9 para maior área de trabalho e imersão em jogos de corrida.',
-    e:11
-  },
-  {
-    id:'p15',
-    n:'Fonte Modular Corsair RM850x 850W 80 Plus Gold',
-    p:899.90, pAnt:1149.00, c:'fonte', loja:'Kabum',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Modular_PC_power_supply.jpg/640px-Modular_PC_power_supply.jpg',
-    a:'Fotografia real de fonte modular com conectores destacáveis',
-    d:'Capacitores japoneses 105°C, modo Zero RPM e eficiência 80 Plus Gold.',
-    e:7
-  },
-  {
-    id:'p16',
-    n:'Teclado Mecânico Gamer Switch Blue Retroiluminado RGB',
-    p:199.90, pAnt:269.00, c:'perifericos', loja:'Pichau',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Mechanical_keyboard_RGB.jpg/640px-Mechanical_keyboard_RGB.jpg',
-    a:'Fotografia real de teclado mecânico com iluminação RGB',
-    d:'Teclas anti-ghosting 100%, resposta tátil audível e cabo trançado.',
-    e:22
-  },
-  {
-    id:'p17',
-    n:'Mouse Gamer Óptico Logitech G502 Hero 25K DPI',
-    p:279.90, pAnt:369.00, c:'perifericos', loja:'Kabum',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Logitech_G502_Hero.jpg/640px-Logitech_G502_Hero.jpg',
-    a:'Fotografia real do mouse gamer Logitech G502 preto',
-    d:'Sensor HERO 25K, 11 botões programáveis e pesos ajustáveis.',
-    e:35
-  },
-  {
-    id:'p18',
-    n:'Air Cooler Torre CPU 120mm Heatpipes de Cobre',
-    p:149.90, pAnt:199.00, c:'perifericos', loja:'Pichau',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/CPU_cooler_heatsink_and_fan.jpg/640px-CPU_cooler_heatsink_and_fan.jpg',
-    a:'Fotografia real de cooler de torre para processador com ventoinha',
-    d:'4 heatpipes de contato direto para manter o processador frio sob carga.',
-    e:19
-  },
-  {
-    id:'p19',
-    n:'HD Interno Seagate BarraCuda 2TB 7200RPM SATA 3.5"',
-    p:389.00, pAnt:479.00, c:'ssd', loja:'Kabum',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Hard_disk_drive_3.5_inch.jpg/640px-Hard_disk_drive_3.5_inch.jpg',
-    a:'Fotografia real de um disco rígido interno SATA de 3.5 polegadas',
-    d:'Armazenamento confiável de alta capacidade para backups e biblioteca de jogos.',
-    e:28
-  },
-  {
-    id:'p20',
-    n:'Placa de Vídeo GTX 1660 Super 6GB GDDR6 Dual Fan',
-    p:1199.00, pAnt:1499.00, c:'gpu', loja:'Pichau',
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Graphics_card_dual_fan.jpg/640px-Graphics_card_dual_fan.jpg',
-    a:'Fotografia real de placa de vídeo com duas ventoinhas',
-    d:'Excelente opção para jogos competitivos em 1080p com baixo consumo.',
-    e:14
-  }
+  {id:'p1', n:'Placa de Vídeo RTX 4060 Ventus 2X OC MSI 8GB', p:1899.00, pAnt:2299.00, c:'gpu', loja:'Kabum', img:'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=500&auto=format&fit=crop&q=80', a:'Placa de vídeo com ventoinhas duplas', d:'DLSS 3, Ray Tracing e 8GB GDDR6 para jogos em Full HD ultra.', e:12},
+  {id:'p2', n:'Processador AMD Ryzen 7 5700X, 8-Core, 16-Threads', p:1249.90, pAnt:1599.00, c:'cpu', loja:'Pichau', img:'https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=500&auto=format&fit=crop&q=80', a:'Chip processador instalado na placa-mãe', d:'Alto desempenho para multitarefa pesada, jogos e criação.', e:18},
+  {id:'p3', n:'Memória RAM Kingston Fury Beast 16GB (2x8) DDR4 3200MHz', p:299.90, pAnt:399.00, c:'memorias', loja:'Kabum', img:'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=500&auto=format&fit=crop&q=80', a:'Módulos de memória RAM DDR4', d:'Frequência de 3200MHz com dissipador metálico de perfil baixo.', e:25},
+  {id:'p4', n:'SSD Kingston NV2 1TB NVMe M.2 2280', p:429.90, pAnt:549.00, c:'ssd', loja:'Pichau', img:'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=500&auto=format&fit=crop&q=80', a:'Unidade de armazenamento SSD M.2', d:'Leitura de até 3500 MB/s para carregamento instantâneo.', e:30},
+  {id:'p5', n:'Placa-Mãe ASUS TUF Gaming B450M-PLUS II, DDR4', p:699.90, pAnt:899.00, c:'placa-mae', loja:'Kabum', img:'https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&auto=format&fit=crop&q=80', a:'Placa-mãe escura com componentes eletrônicos', d:'Suporte a Ryzen série 5000, VRM robusto e proteção militar.', e:8},
+  {id:'p6', n:'Monitor Gamer Curvo 27 pol. QHD 180Hz 1ms', p:1399.00, pAnt:1799.00, c:'monitor', loja:'Pichau', img:'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&auto=format&fit=crop&q=80', a:'Monitor gamer widescreen sobre mesa', d:'Painel curvo QHD, taxa de atualização de 180Hz e FreeSync.', e:7},
+  {id:'p7', n:'Fonte MSI MAG A650BN 650W 80 Plus Bronze', p:349.90, pAnt:449.00, c:'fonte', loja:'Kabum', img:'https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=500&auto=format&fit=crop&q=80', a:'Fonte de alimentação de computador', d:'Certificação 80 Plus Bronze com PFC ativo e cabos pretos.', e:15},
+  {id:'p8', n:'Gabinete Gamer Mid Tower Lateral Vidro Temperado', p:229.90, pAnt:299.00, c:'perifericos', loja:'Pichau', img:'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=500&auto=format&fit=crop&q=80', a:'Gabinete gamer iluminado', d:'Frente em mesh para fluxo de ar otimizado e lateral em vidro.', e:14},
+  {id:'p9', n:'Processador Intel Core i5-12400F, 6-Core, 12-Threads', p:799.00, pAnt:999.00, c:'cpu', loja:'Kabum', img:'https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=500&auto=format&fit=crop&q=80', a:'Processador Intel no socket', d:'Excelente custo-benefício para jogos e produtividade diária.', e:20},
+  {id:'p10', n:'Placa de Vídeo RTX 4070 Super 12GB GDDR6X', p:3899.00, pAnt:4499.00, c:'gpu', loja:'Pichau', img:'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=500&auto=format&fit=crop&q=80', a:'Placa de vídeo topo de linha', d:'Desempenho extremo para jogos em Quad HD e 4K com Ray Tracing.', e:5},
+  {id:'p11', n:'Memória RAM Corsair Vengeance RGB 32GB (2x16) 3600MHz', p:679.90, pAnt:849.00, c:'memorias', loja:'Kabum', img:'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=500&auto=format&fit=crop&q=80', a:'Pentes de memória RAM de alta capacidade', d:'Iluminação RGB dinâmica e alto desempenho em frequências elevadas.', e:10},
+  {id:'p12', n:'SSD M.2 NVMe 2TB Samsung 990 PRO', p:1199.00, pAnt:1499.00, c:'ssd', loja:'Pichau', img:'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=500&auto=format&fit=crop&q=80', a:'SSD NVMe de 2TB', d:'Leitura ultrarrápida de até 7450 MB/s para entusiastas.', e:9},
+  {id:'p13', n:'Placa-Mãe Gigabyte B550M AORUS Elite, DDR4', p:849.00, pAnt:1049.00, c:'placa-mae', loja:'Kabum', img:'https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&auto=format&fit=crop&q=80', a:'Placa-mãe AORUS', d:'Dissipadores térmicos avançados e slot M.2 com protetor térmico.', e:11},
+  {id:'p14', n:'Monitor Gamer 24 pol. 165Hz 1ms IPS Full HD', p:899.00, pAnt:1199.00, c:'monitor', loja:'Pichau', img:'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&auto=format&fit=crop&q=80', a:'Monitor gamer 165Hz', d:'Fluidez extrema para eSports com tempo de resposta ultrabaixo.', e:16},
+  {id:'p15', n:'Fonte Corsair RM750x 750W 80 Plus Gold Modular', p:799.90, pAnt:999.00, c:'fonte', loja:'Kabum', img:'https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=500&auto=format&fit=crop&q=80', a:'Fonte modular 750W', d:'Eficiência máxima, cabeamento 100% modular e operação silenciosa.', e:7},
+  {id:'p16', n:'Teclado Mecânico Gamer Switch Blue RGB', p:199.90, pAnt:269.00, c:'perifericos', loja:'Pichau', img:'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=80', a:'Teclado mecânico iluminado', d:'Formato compacto TKL, construção em alumínio e iluminação RGB.', e:22},
+  {id:'p17', n:'Mouse Gamer Óptico Logitech G203 Lightsync 8500 DPI', p:139.90, pAnt:199.00, c:'perifericos', loja:'Kabum', img:'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&auto=format&fit=crop&q=80', a:'Mouse gamer preto RGB', d:'Sensor de nível para jogos, design clássico e luzes vibrantes.', e:35},
+  {id:'p18', n:'Water Cooler Corsair H100 RGB 240mm', p:599.90, pAnt:749.00, c:'perifericos', loja:'Pichau', img:'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=500&auto=format&fit=crop&q=80', a:'Sistema de refrigeração líquida', d:'Refrigeração líquida de alto desempenho com ventoinhas ARGB.', e:12},
+  {id:'p19', n:'Processador AMD Ryzen 5 5600, 6-Core, 12-Threads', p:849.00, pAnt:1099.00, c:'cpu', loja:'Kabum', img:'https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=500&auto=format&fit=crop&q=80', a:'Processador AMD Ryzen 5', d:'Excelente taxa de quadros por segundo para jogos competitivos.', e:28},
+  {id:'p20', n:'Placa de Vídeo RX 6600 Challenger D ASRock 8GB', p:1399.00, pAnt:1799.00, c:'gpu', loja:'Pichau', img:'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=500&auto=format&fit=crop&q=80', a:'Placa de vídeo Radeon RX 6600', d:'Ótimo custo-benefício para rodar jogos atuais em 1080p.', e:14}
 ];
 
 var filtro = 'todos', termo = '', ordem = 'padrao', carrinho = [], comparar = [];
@@ -263,7 +103,7 @@ function render() {
     li.innerHTML = 
       '<div class="card-img-wrap">' +
         '<span class="badge-loja">' + p.loja + '</span>' +
-        '<img src="' + p.img + '" alt="' + p.a + '" loading="lazy" onerror="this.src=\'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png\'">' +
+        '<img src="' + p.img + '" alt="' + p.a + '" loading="lazy">' +
       '</div>' +
       '<p class="cat-tag">' + p.c.toUpperCase() + '</p>' +
       '<h3>' + p.n + '</h3>' +
@@ -463,7 +303,7 @@ if(bp && pn) {
 var PASSOS = [
   {alvo:'#busca', t:'Campo de busca inteligente. Digite qualquer componente e pressione Enter para filtrar o catálogo.'},
   {alvo:'#cats', t:'Filtros rápidos de categorias estilo e-commerce. O leitor de tela anuncia qual filtro está ativo.'},
-  {alvo:'#grade', t:'Vitrine de produtos com 20 itens reais de hardware, fotografias autênticas e preços promocionais.'},
+  {alvo:'#grade', t:'Vitrine de produtos com 20 itens reais de hardware, imagens diretas e preços promocionais.'},
   {alvo:'#carrinho', t:'Carrinho dinâmico com atualização instantânea de subtotal e suporte a acessibilidade.'},
   {alvo:'#checkout', t:'Formulário de fechamento com validação imediata e foco automático em caso de erro.'}
 ];
