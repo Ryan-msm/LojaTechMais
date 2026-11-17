@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lojas Quase Tudo — Hardware e Peças para PC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app" lang="pt-BR">
+<h2 class="sr">Loja virtual de peças de hardware com acessibilidade WCAG 2.1 nível AA, legendas ao vivo e assistente de navegação por áudio e texto.</h2>
+<a class="pular" href="#catalogo">Ir direto para o catálogo</a>
+
+<header class="topo">
+  <p class="marca">Lojas Quase Tudo <span>hardware e peças para PC</span></p>
+  <div class="acoes-topo">
+    <button id="btn-assistente" class="btn primario" aria-expanded="false" aria-controls="assistente">Assistente acessível</button>
+    <button id="btn-prefs" class="btn" aria-expanded="false" aria-controls="prefs">Acessibilidade</button>
+    <p class="contador">Carrinho: <span id="contador" aria-live="polite" aria-atomic="true">0 itens</span></p>
+  </div>
+</header>
+
+<section class="legendas" id="legendas" aria-labelledby="leg-tit">
+  <div class="cab">
+    <h2 id="leg-tit">Legendas ao vivo</h2>
+    <button id="btn-leg" class="btn" aria-pressed="true" style="margin-left:auto;font-size:.78em;padding:5px 10px;min-height:32px">Legendas ligadas</button>
+    <button id="btn-audio" class="btn" aria-pressed="true" style="font-size:.78em;padding:5px 10px;min-height:32px">Áudio ligado</button>
+  </div>
+  <ol id="log" role="log" aria-live="polite" aria-relevant="additions" aria-label="Histórico de legendas">
+    <li><span class="hora">00:00</span><b>Site:</b> página pronta. Abra o assistente para o tour guiado.</li>
+  </ol>
+</section>
+
+<section class="painel" id="assistente" hidden="" aria-labelledby="assist-tit">
+  <p class="passo" id="passo-num"></p>
+  <h2 id="assist-tit">Assistente de navegação</h2>
+  <p class="txt" id="passo-txt"></p>
+  <div class="linha">
+    <button id="btn-ant" class="btn">Anterior</button>
+    <button id="btn-rep" class="btn">Repetir áudio</button>
+    <button id="btn-prox" class="btn primario">Próximo</button>
+    <button id="btn-fechar-assist" class="btn">Fechar</button>
+  </div>
+</section>
+
+<section class="painel" id="prefs" hidden="" aria-labelledby="prefs-tit">
+  <h2 id="prefs-tit">Preferências de leitura</h2>
+  <div class="linha">
+    <button class="btn" data-p="t1" aria-pressed="true">Texto normal</button>
+    <button class="btn" data-p="t2" aria-pressed="false">Texto grande</button>
+    <button class="btn" data-p="t3" aria-pressed="false">Texto maior</button>
+    <button class="btn" data-p="hc" aria-pressed="false">Alto contraste</button>
+    <button class="btn" data-p="esp" aria-pressed="false">Mais espaçamento</button>
+    <button class="btn" data-p="links" aria-pressed="false">Sublinhar links</button>
+    <button class="btn" data-p="mov" aria-pressed="false">Reduzir movimento</button>
+    <button id="btn-reset" class="btn">Restaurar padrão</button>
+    <button id="btn-fechar-prefs" class="btn">Fechar</button>
+  </div>
+  <p class="dica">As escolhas ficam salvas neste navegador.</p>
+</section>
+
+<main id="catalogo">
+  <section class="hero" aria-labelledby="busca-tit">
+    <h1 id="busca-tit">Buscar peça</h1>
+    <p>Campo com rótulo associado e resultado anunciado por leitor de tela.</p>
+    <div class="busca" role="search">
+      <label for="busca" class="sr">Nome da peça</label>
+      <input id="busca" type="search" placeholder="Ex.: memória, SSD, monitor" autocomplete="off" aria-describedby="busca-dica">
+      <button id="btn-buscar" class="btn primario">Buscar</button>
+    </div>
+    <span class="dica" id="busca-dica">Enter busca, Escape limpa.</span>
+    <p id="anuncios" class="sr" aria-live="polite" aria-atomic="true"></p>
+  </section>
+
+  <fieldset class="cats" id="cats">
+    <legend>Filtrar por categoria</legend>
+    <button class="btn" data-cat="todos" aria-pressed="true">Todas</button>
+    <button class="btn" data-cat="memorias" aria-pressed="false">Memórias</button>
+    <button class="btn" data-cat="ssd" aria-pressed="false">SSDs</button>
+    <button class="btn" data-cat="gpu" aria-pressed="false">Placas de vídeo</button>
+    <button class="btn" data-cat="cpu" aria-pressed="false">Processadores</button>
+    <button class="btn" data-cat="placa-mae" aria-pressed="false">Placas-mãe</button>
+    <button class="btn" data-cat="monitor" aria-pressed="false">Monitores</button>
+    <button class="btn" data-cat="fonte" aria-pressed="false">Fontes</button>
+  </fieldset>
+
+  <p class="ordenar">
+    <label for="ordenar">Ordenar por</label>
+    <select id="ordenar">
+      <option value="padrao">Relevância</option>
+      <option value="menor">Menor preço</option>
+      <option value="maior">Maior preço</option>
+      <option value="az">Nome de A a Z</option>
+    </select>
+  </p>
+
+  <h2 id="prod-tit" style="font-size:1.02em;margin:14px 0 0">Produtos</h2>
+  <ul class="grade" id="grade" aria-labelledby="prod-tit"></ul>
+  <p class="vazio" id="sem-res" hidden="">Nenhuma peça encontrada.</p>
+
+  <section class="painel" id="carrinho" aria-labelledby="carr-tit" style="margin:18px 0 0">
+    <h2 id="carr-tit">Carrinho</h2>
+    <ul id="lista-carrinho"></ul>
+    <p class="vazio" id="carr-vazio">Carrinho vazio.</p>
+    <p class="total"><span>Subtotal</span> <span id="total">R$ 0,00</span></p>
+    <p class="dica">Cada alteração é anunciada por região viva e repetida nas legendas.</p>
+  </section>
+
+  <section class="painel" id="comparar" aria-labelledby="comp-tit" style="margin:12px 0 0">
+    <h2 id="comp-tit">Comparação de até 3 itens</h2>
+    <ul id="lista-comp"></ul>
+    <p class="vazio" id="comp-vazio">Nenhum item marcado.</p>
+  </section>
+
+  <section class="painel" id="checkout" aria-labelledby="check-tit" style="margin:12px 0 0">
+    <h2 id="check-tit">Finalizar pedido</h2>
+    <p class="dica" style="margin-bottom:12px">Rótulos reais, dicas vinculadas e erros anunciados. Ao enviar com erro, o foco vai para o primeiro campo inválido.</p>
+    <div role="form" aria-labelledby="check-tit">
+      <div class="campo" id="campo-nome">
+        <label for="nome">Nome completo *</label>
+        <input id="nome" autocomplete="name" aria-required="true" aria-describedby="erro-nome">
+        <span class="erro" id="erro-nome" role="alert"></span>
+      </div>
+      <div class="campo" id="campo-email">
+        <label for="email">E-mail *</label>
+        <input id="email" type="email" autocomplete="email" aria-required="true" aria-describedby="dica-email erro-email">
+        <span class="dica" id="dica-email">Usado apenas para enviar o código de rastreio.</span>
+        <span class="erro" id="erro-email" role="alert"></span>
+      </div>
+      <div class="campo" id="campo-cep">
+        <label for="cep">CEP *</label>
+        <input id="cep" inputmode="numeric" autocomplete="postal-code" maxlength="9" aria-required="true" aria-describedby="dica-cep erro-cep">
+        <span class="dica" id="dica-cep">Oito dígitos, com ou sem hífen.</span>
+        <span class="erro" id="erro-cep" role="alert"></span>
+      </div>
+      <fieldset>
+        <legend>Forma de pagamento</legend>
+        <div class="linha" style="gap:16px">
+          <label><input type="radio" name="pag" value="pix" checked=""> Pix</label>
+          <label><input type="radio" name="pag" value="cartao"> Cartão</label>
+          <label><input type="radio" name="pag" value="boleto"> Boleto</label>
+        </div>
+      </fieldset>
+      <button id="btn-finalizar" class="btn primario">Finalizar pedido</button>
+      <p id="retorno" role="status" style="font-size:.87em;font-weight:500;margin:10px 0 0"></p>
+    </div>
+  </section>
+
+  <section class="painel" id="declaracao" aria-labelledby="decl-tit" style="margin:12px 0 0">
+    <h2 id="decl-tit">Declaração de acessibilidade</h2>
+    <p class="dica" style="margin-bottom:10px">Construída para a WCAG 2.1 nível AA. <span class="selo">conforme AA</span></p>
+    <ul class="crit">
+      <li><b>1.1.1 Conteúdo não textual</b><span>Todo ícone tem nome acessível descritivo.</span></li>
+      <li><b>1.3.1 Informação e relações</b><span>Marcos semânticos, títulos hierárquicos, listas reais e rótulos associados.</span></li>
+      <li><b>1.4.3 e 1.4.11 Contraste</b><span>Texto acima de 4,5:1 e contornos acima de 3:1, inclusive no alto contraste.</span></li>
+      <li><b>2.1.1 Teclado</b><span>Tudo opera com Tab, Enter e Espaço, com foco visível de 3 px.</span></li>
+      <li><b>2.4.1 e 2.4.7 Saltos e foco</b><span>Atalho para o catálogo e indicador de foco permanente.</span></li>
+      <li><b>3.3.1 e 3.3.2 Erros e rótulos</b><span>Erros descritos em texto, anunciados e com instrução de correção.</span></li>
+      <li><b>4.1.2 e 4.1.3 Nome, função, valor</b><span>Estados em aria-pressed e aria-expanded; avisos por região viva.</span></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>Lojas Quase Tudo — demonstração didática. Dados fictícios.</p>
+  <p>Atalhos: Tab navega, Enter ativa, Alt+A abre preferências, Alt+S abre o assistente.</p>
+</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
